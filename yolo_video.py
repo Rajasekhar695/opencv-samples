@@ -170,13 +170,14 @@ while True:
 
 	# write the output frame to disk
 	writer.write(frame)
-	print(no_of_persons, "persons found in frame number", frame_no, "at", time, "secs")
-	dict[frame_no] = {}
-	dict[frame_no]["persons found"] = no_of_persons
-	dict[frame_no]["At seconds"] = time
-	print(dict)
+	if (len(boxes) != 0):
+		print(no_of_persons, "persons found in frame number", frame_no, "at", time, "secs")
+		dict[frame_no] = {}
+		dict[frame_no]["persons found"] = no_of_persons
+		dict[frame_no]["At seconds"] = time
+		print(dict)
 
 # release the file pointers
 print("[INFO] cleaning up...")
-writer.release()
+#writer.release()
 vs.release()
