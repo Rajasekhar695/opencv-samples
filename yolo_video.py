@@ -8,6 +8,7 @@ import imutils
 import time as t
 import cv2
 import os
+import json
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -171,13 +172,14 @@ while True:
 	# write the output frame to disk
 	writer.write(frame)
 	if (len(boxes) != 0):
-		print(no_of_persons, "persons found in frame number", frame_no, "at", time, "secs")
 		dict[frame_no] = {}
 		dict[frame_no]["persons found"] = no_of_persons
 		dict[frame_no]["At seconds"] = time
-		print(dict)
+		with open('output.json', 'w', encoding='utf-8') as f:
+			json.dump(dict, f, ensure_ascii=False, indent=4)
 
 # release the file pointers
+print("Output added to json")
 print("[INFO] cleaning up...")
 #writer.release()
 vs.release()
